@@ -1,0 +1,111 @@
+.buyBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--dark-gray);
+}
+
+.reference {
+  font-size: 12px;
+  color: var(--dark-gray-3);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--warning);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.stars img {
+  filter: brightness(0) invert(1);
+}
+
+.reviews {
+  font-size: 14px;
+  color: var(--light-gray);
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.oldPrice {
+  font-size: 16px;
+  color: var(--light-gray-2);
+  text-decoration: line-through;
+}
+
+.description h2 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--light-gray);
+}
+
+.description p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--dark-gray-2);
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buy {
+  align-self: flex-start;
+  width: 220px;
+  height: 48px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--warning);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  transition: filter 0.2s;
+}
+
+.buy:hover {
+  filter: brightness(0.92);
+}
+
+@media (max-width: 640px) {
+  .name {
+    font-size: 24px;
+  }
+
+  .buy {
+    width: 100%;
+  }
+}

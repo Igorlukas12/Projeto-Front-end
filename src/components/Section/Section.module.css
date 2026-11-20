@@ -1,0 +1,47 @@
+.section {
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.center {
+  justify-content: center;
+  position: relative;
+}
+
+.center .link {
+  position: absolute;
+  right: 0;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark-gray-2);
+}
+
+.link {
+  font-size: 18px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: var(--tertiary);
+}
+
+@media (max-width: 560px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}

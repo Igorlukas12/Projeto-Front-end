@@ -1,0 +1,81 @@
+.hero {
+  max-width: 1440px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-top: 80px;
+}
+
+.collections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.collection {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.collection img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.collection:hover img {
+  transform: scale(1.03);
+}
+
+.collectionBadge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 6px 16px;
+  border-radius: 29px;
+  background: #e7ff86;
+  color: var(--dark-gray-2);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.collectionButton {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s;
+}
+
+.collection:hover .collectionButton {
+  background: var(--primary);
+  color: var(--white);
+}
+
+@media (max-width: 860px) {
+  .content {
+    gap: 48px;
+    padding-top: 48px;
+  }
+
+  .collections {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .collection {
+    max-width: 405px;
+    width: 100%;
+  }
+}

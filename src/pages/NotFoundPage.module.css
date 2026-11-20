@@ -1,0 +1,25 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.notFound h1 {
+  font-size: 96px;
+  color: var(--primary);
+}
+
+.notFound p {
+  font-size: 20px;
+}
+
+.notFound a {
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+}
