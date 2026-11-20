@@ -2,7 +2,12 @@
   "name": "digital-store",
   "private": true,
   "version": "1.0.0",
+  "description": "E-commerce Digital Store em React - Projeto Final de Front-end",
+  "author": "Igor Lucas de Almeida",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
