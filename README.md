@@ -6,11 +6,11 @@ e do layout **Drip Store** no Figma.
 
 ## 👥 Equipe
 
+Projeto desenvolvido individualmente por:
+
 | Nome | GitHub |
 | ---- | ------ |
-| _Seu nome aqui_ | [@igorlukas12](https://github.com/igorlukas12) |
-| _Integrante 2 (opcional)_ | |
-| _Integrante 3 (opcional)_ | |
+| Igor Lucas de Almeida | [@igorlukas12](https://github.com/igorlukas12) |
 
 ## 🚀 Tecnologias
 
