@@ -3,13 +3,15 @@ import Layout from "./Layout";
 import Gallery from "../components/Gallery/Gallery";
 import Section from "../components/Section/Section";
 import ProductListing from "../components/ProductListing/ProductListing";
-import { products } from "../data/products";
+import StatusMessage from "../components/StatusMessage/StatusMessage";
+import useProducts from "../hooks/useProducts";
 import { featuredCollections, homeSlides } from "../data/navigation";
 import styles from "./HomePage.module.css";
 
-const trendingProducts = products.slice(0, 8);
-
 export default function HomePage() {
+  const { products, loading, error } = useProducts();
+  const trendingProducts = products.slice(0, 8);
+
   return (
     <Layout>
       <Gallery images={homeSlides} width="1440" height="681" className={styles.hero} />
@@ -28,7 +30,8 @@ export default function HomePage() {
         </Section>
 
         <Section title="Produtos em alta" titleAlign="left" link={{ text: "Ver todos", href: "/products" }}>
-          <ProductListing products={trendingProducts} />
+          <StatusMessage loading={loading} error={error} />
+          {!loading && !error && <ProductListing products={trendingProducts} />}
         </Section>
       </div>
     </Layout>

@@ -6,15 +6,27 @@ import BuyBox from "../components/BuyBox/BuyBox";
 import ProductOptions from "../components/ProductOptions/ProductOptions";
 import Section from "../components/Section/Section";
 import ProductListing from "../components/ProductListing/ProductListing";
+import StatusMessage from "../components/StatusMessage/StatusMessage";
 import NotFoundPage from "./NotFoundPage";
-import { getProductById, products } from "../data/products";
+import useProducts from "../hooks/useProducts";
 import styles from "./ProductViewPage.module.css";
 
 export default function ProductViewPage() {
   const { id } = useParams();
-  const product = getProductById(id);
-  const [feedback, setFeedback] = useState("");
+  const { products, loading, error } = useProducts();
+  const [feedback, setFeedback] = useState({ id: null, message: "" });
 
+  if (loading || error) {
+    return (
+      <Layout>
+        <div className="container">
+          <StatusMessage loading={loading} error={error} />
+        </div>
+      </Layout>
+    );
+  }
+
+  const product = products.find((item) => item.id === Number(id));
   if (!product) return <NotFoundPage message="Produto não encontrado." />;
 
   const recommended = products.filter((item) => item.id !== product.id).slice(0, 4);
@@ -50,14 +62,14 @@ export default function ProductViewPage() {
               price={product.price}
               priceDiscount={product.priceDiscount}
               description={product.description}
-              onBuy={() => setFeedback(`${product.name} adicionado ao carrinho!`)}
+              onBuy={() => setFeedback({ id: product.id, message: `${product.name} adicionado ao carrinho!` })}
             >
               <ProductOptions title="Tamanho" options={product.sizes} shape="square" radius="4px" type="text" />
               <ProductOptions title="Cor" options={product.colors} shape="circle" type="color" />
             </BuyBox>
-            {feedback && (
+            {feedback.id === product.id && (
               <p className={styles.feedback} role="status">
-                {feedback}
+                {feedback.message}
               </p>
             )}
           </div>

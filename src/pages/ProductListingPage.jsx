@@ -4,7 +4,9 @@ import Layout from "./Layout";
 import Section from "../components/Section/Section";
 import ProductListing from "../components/ProductListing/ProductListing";
 import FilterGroup from "../components/FilterGroup/FilterGroup";
-import { filterGroups, products } from "../data/products";
+import StatusMessage from "../components/StatusMessage/StatusMessage";
+import useProducts from "../hooks/useProducts";
+import { buildFilterGroups } from "../services/productService";
 import styles from "./ProductListingPage.module.css";
 
 const SORT_OPTIONS = [
@@ -26,6 +28,8 @@ const finalPrice = (product) => product.priceDiscount ?? product.price;
 export default function ProductListingPage() {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("filter") ?? "";
+  const { products, loading, error } = useProducts();
+  const filterGroups = useMemo(() => buildFilterGroups(products), [products]);
 
   const [sort, setSort] = useState("lowest");
   const [filters, setFilters] = useState(emptyFilters);
@@ -55,10 +59,12 @@ export default function ProductListingPage() {
         );
       })
       .sort((a, b) => (sort === "lowest" ? finalPrice(a) - finalPrice(b) : finalPrice(b) - finalPrice(a)));
-  }, [searchTerm, filters, sort]);
+  }, [products, searchTerm, filters, sort]);
 
   const total = visibleProducts.length;
-  const title = searchTerm
+  const title = loading
+    ? "Carregando..."
+    : searchTerm
     ? `Resultados para "${searchTerm}" - ${total} ${total === 1 ? "produto" : "produtos"}`
     : `${total} ${total === 1 ? "produto encontrado" : "produtos encontrados"}`;
 
@@ -112,7 +118,8 @@ export default function ProductListingPage() {
         </aside>
 
         <Section title={title} titleAlign="left" className={styles.results}>
-          <ProductListing products={visibleProducts} columns={3} />
+          <StatusMessage loading={loading} error={error} />
+          {!loading && !error && <ProductListing products={visibleProducts} columns={3} />}
         </Section>
       </div>
     </Layout>

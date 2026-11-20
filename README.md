@@ -28,6 +28,16 @@ npm run build     # build de produção em /dist
 npm run preview   # serve o build localmente
 ```
 
+## 🌐 Deploy
+
+O projeto está pronto para três plataformas:
+
+- **GitHub Pages (automático):** o workflow `.github/workflows/deploy.yml` faz o build e publica a cada push.
+  Basta ativar uma vez em *Settings → Pages → Source: **GitHub Actions***.
+  Endereço: `https://igorlukas12.github.io/Projeto-Front-end/`
+- **Vercel:** *Add New → Project →* importar o repositório (o `vercel.json` já trata as rotas do React Router).
+- **Netlify:** importar o repositório com build `npm run build` e pasta `dist` (o `public/_redirects` já trata as rotas).
+
 ## 🗺️ Páginas e rotas
 
 | Rota | Página | Descrição |
@@ -54,6 +64,17 @@ npm run preview   # serve o build localmente
 | `ProductOptions` | `options[]`, `shape` (`square` \| `circle`), `radius`, `type` (`text` \| `color`) | Seleção com borda primária de 2 px |
 | `BuyBox` | `name`, `reference`, `stars`, `rating`, `price`, `priceDiscount`, `description`, `children` | Botão "Comprar" na cor warning |
 
+## 🔌 Consumo de API
+
+Os produtos não ficam fixos no código: são carregados via **requisição HTTP** (`fetch`) do endpoint
+`public/api/products.json`, simulando uma API REST.
+
+- `src/services/productService.js` — camada de acesso à API (busca, cache em memória e tratamento de erro HTTP)
+- `src/hooks/useProducts.js` — hook customizado com estados de `loading` e `error` (`useEffect` com cleanup)
+- `src/components/StatusMessage` — exibe "Carregando produtos..." ou a mensagem de erro
+
+Para trocar por uma API real, basta alterar a `API_URL` no service.
+
 ## ✨ Funcionalidades
 
 - Busca acessível no header, sem distinção de acentos/maiúsculas (ex.: `tenis` encontra "Tênis")
@@ -68,13 +89,15 @@ npm run preview   # serve o build localmente
 src/
 ├── assets/            # logos, ícones e SVGs das redes sociais
 ├── components/        # um diretório por componente (JSX + CSS Module)
-├── data/              # produtos mockados e dados de navegação
+├── data/              # dados de navegação, banners e coleções
+├── hooks/             # hooks customizados (useProducts)
+├── services/          # acesso à API de produtos
 ├── pages/             # Layout e páginas (apenas composição de componentes)
 ├── styles/global.css  # reset e variáveis de cor
-├── utils/format.js    # formatação de preço (R$) e cálculo de desconto
+├── utils/             # formatação de preço (R$) e caminhos de assets
 ├── App.jsx            # definição das rotas
 └── main.jsx           # ponto de entrada
-public/                # imagens de banners, coleções e produtos
+public/                # imagens e api/products.json
 ```
 
 ## 🎨 Paleta

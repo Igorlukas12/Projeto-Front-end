@@ -1,3 +1,5 @@
+import { asset } from "../utils/asset";
+
 export const mainNavLinks = [
   { text: "Home", to: "/" },
   { text: "Produtos", to: "/products" },
@@ -37,11 +39,11 @@ export const footerInformations = [
 ];
 
 export const homeSlides = [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
-  src: `/home-slide-${n}.jpeg`,
+  src: asset(`home-slide-${n}.jpeg`),
 }));
 
 export const featuredCollections = [
-  { src: "/collection-1.png", alt: "Coleção de camisetas", discount: "30% OFF", to: "/products?filter=camiseta" },
-  { src: "/collection-2.png", alt: "Coleção de tênis", discount: "30% OFF", to: "/products?filter=tênis" },
-  { src: "/collection-3.png", alt: "Coleção de headphones", discount: "30% OFF", to: "/products?filter=headphone" },
+  { src: asset("collection-1.png"), alt: "Coleção de camisetas", discount: "30% OFF", to: "/products?filter=camiseta" },
+  { src: asset("collection-2.png"), alt: "Coleção de tênis", discount: "30% OFF", to: "/products?filter=tênis" },
+  { src: asset("collection-3.png"), alt: "Coleção de headphones", discount: "30% OFF", to: "/products?filter=headphone" },
 ];
